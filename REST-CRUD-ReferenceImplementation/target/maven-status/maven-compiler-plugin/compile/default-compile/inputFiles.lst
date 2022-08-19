@@ -1,0 +1,11 @@
+/Users/nareshchaurasia/nc/Java-Architect/SpringBoot-Microservices-Reference-Implementation/REST-CRUD-ReferenceImplementation/src/main/java/com/appsdeveloperblog/app/ws/ui/model/response/ErrorMessage.java
+/Users/nareshchaurasia/nc/Java-Architect/SpringBoot-Microservices-Reference-Implementation/REST-CRUD-ReferenceImplementation/src/main/java/com/appsdeveloperblog/app/ws/ui/model/response/UserRest.java
+/Users/nareshchaurasia/nc/Java-Architect/SpringBoot-Microservices-Reference-Implementation/REST-CRUD-ReferenceImplementation/src/main/java/com/appsdeveloperblog/app/ws/ui/model/request/UserDetailsRequestModel.java
+/Users/nareshchaurasia/nc/Java-Architect/SpringBoot-Microservices-Reference-Implementation/REST-CRUD-ReferenceImplementation/src/main/java/com/appsdeveloperblog/app/ws/userservice/UserService.java
+/Users/nareshchaurasia/nc/Java-Architect/SpringBoot-Microservices-Reference-Implementation/REST-CRUD-ReferenceImplementation/src/main/java/com/appsdeveloperblog/app/ws/userservice/impl/UserServiceImpl.java
+/Users/nareshchaurasia/nc/Java-Architect/SpringBoot-Microservices-Reference-Implementation/REST-CRUD-ReferenceImplementation/src/main/java/com/appsdeveloperblog/app/ws/exceptions/UserServiceException.java
+/Users/nareshchaurasia/nc/Java-Architect/SpringBoot-Microservices-Reference-Implementation/REST-CRUD-ReferenceImplementation/src/main/java/com/appsdeveloperblog/app/ws/MobileAppWsApplication.java
+/Users/nareshchaurasia/nc/Java-Architect/SpringBoot-Microservices-Reference-Implementation/REST-CRUD-ReferenceImplementation/src/main/java/com/appsdeveloperblog/app/ws/ui/controllers/UserController.java
+/Users/nareshchaurasia/nc/Java-Architect/SpringBoot-Microservices-Reference-Implementation/REST-CRUD-ReferenceImplementation/src/main/java/com/appsdeveloperblog/app/ws/exceptions/AppExceptionsHandler.java
+/Users/nareshchaurasia/nc/Java-Architect/SpringBoot-Microservices-Reference-Implementation/REST-CRUD-ReferenceImplementation/src/main/java/com/appsdeveloperblog/app/ws/shared/Utils.java
+/Users/nareshchaurasia/nc/Java-Architect/SpringBoot-Microservices-Reference-Implementation/REST-CRUD-ReferenceImplementation/src/main/java/com/appsdeveloperblog/app/ws/ui/model/request/UpdateUserDetailsRequestModel.java
