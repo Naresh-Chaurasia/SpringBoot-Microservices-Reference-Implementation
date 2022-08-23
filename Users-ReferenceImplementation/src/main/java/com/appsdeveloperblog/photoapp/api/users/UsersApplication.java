@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.photoapp.api.account;
+package com.appsdeveloperblog.photoapp.api.users;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,11 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class PhotoAppApiAccountManagementApplication {
-
+public class UsersApplication {
+	
 	public static void main(String[] args) {
-		SpringApplication.run(PhotoAppApiAccountManagementApplication.class, args);
+		SpringApplication.run(UsersApplication.class, args);
 	}
+
 
 }
