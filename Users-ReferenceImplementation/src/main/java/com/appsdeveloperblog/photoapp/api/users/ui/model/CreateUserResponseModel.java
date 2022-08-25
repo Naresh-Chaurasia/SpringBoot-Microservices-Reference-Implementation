@@ -1,22 +1,10 @@
-package com.appsdeveloperblog.photoapp.api.users.shared;
+package com.appsdeveloperblog.photoapp.api.users.ui.model;
 
-import java.io.Serializable;
-import java.util.List;
-
-
-public class UserDto implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -953297098295050686L;
-	
+public class CreateUserResponseModel {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String password;
 	private String userId;
-	private String encryptedPassword;
-
 
 	public String getFirstName() {
 		return firstName;
@@ -42,14 +30,6 @@ public class UserDto implements Serializable {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getUserId() {
 		return userId;
 	}
@@ -58,24 +38,13 @@ public class UserDto implements Serializable {
 		this.userId = userId;
 	}
 
-	public String getEncryptedPassword() {
-		return encryptedPassword;
-	}
-
-	public void setEncryptedPassword(String encryptedPassword) {
-		this.encryptedPassword = encryptedPassword;
-	}
-
-
 	@Override
 	public String toString() {
-		return "UserDto{" +
+		return "CreateUserResponseModel{" +
 				"firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", email='" + email + '\'' +
-				", password='" + password + '\'' +
 				", userId='" + userId + '\'' +
-				", encryptedPassword='" + encryptedPassword + '\'' +
 				'}';
 	}
 }
