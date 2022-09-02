@@ -14,6 +14,10 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -28,24 +32,28 @@ public class UsersServiceImpl implements UsersService {
 	UsersRepository usersRepository;
 	//RestTemplate restTemplate;
 	Environment environment;
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	public UsersServiceImpl(UsersRepository usersRepository,
-							Environment environment)
+							Environment environment, BCryptPasswordEncoder bCryptPasswordEncoder)
 	{
 		this.usersRepository = usersRepository;
 		this.environment = environment;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 
 	@Override
 	public UserDto createUser(UserDto userDetails) {
 		// TODO Auto-generated method stub
 
+		System.out.println("-----------------------------UsersServiceImpl/createUser--------------------------");
+
 		userDetails.setUserId(UUID.randomUUID().toString());
-		userDetails.setEncryptedPassword("password");
+		userDetails.setEncryptedPassword(bCryptPasswordEncoder.encode(userDetails.getPassword()));
 
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -57,10 +65,36 @@ public class UsersServiceImpl implements UsersService {
 		UserDto returnValue = modelMapper.map(userEntity, UserDto.class);
 
 		return returnValue;
+
+	}
+
+	@Override
+	public UserDto getUserDetailsByEmail(String email) {
+
+		System.out.println("-----------------------------UsersServiceImpl/getUserDetailsByEmail--------------------------");
+
+		UserEntity userEntity = usersRepository.findByEmail(email);
+
+		if(userEntity == null)
+			throw new UsernameNotFoundException(email);
+
+
+		return new ModelMapper().map(userEntity, UserDto.class);
 	}
 
 
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+		System.out.println("-----------------------------UsersServiceImpl/loadUserByUsername--------------------------");
+		System.out.println("-----------------------------We are overriding inbuild method--------------------------");
+
+		UserEntity userEntity = usersRepository.findByEmail(username);
+
+		if(userEntity == null) throw new UsernameNotFoundException(username);
+
+		return new User(userEntity.getEmail(), userEntity.getEncryptedPassword(), true, true, true, true, new ArrayList<>());
+	}
 
 
 
