@@ -38,7 +38,7 @@ public class UsersController {
 	)
 	public ResponseEntity<CreateUserResponseModel>  createUser(@Valid @RequestBody CreateUserRequestModel userDetails) {
 
-		System.out.println("-----------------------------UsersController/createUser--------------------------");
+		System.out.println("-----------------------------UsersController/createUser--------------------------"+java.time.LocalDateTime.now());
 
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);

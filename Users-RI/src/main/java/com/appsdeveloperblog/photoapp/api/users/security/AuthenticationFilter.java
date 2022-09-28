@@ -44,10 +44,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	}
 	
     @Override
+    // This comes from super class. This is where authentication happens
     public Authentication attemptAuthentication(HttpServletRequest req,
                                                 HttpServletResponse res) throws AuthenticationException {
 
-        System.out.println("-----------------------------AuthenticationFilter/attemptAuthentication--------------------------");
+        System.out.println("-----------------------------AuthenticationFilter/attemptAuthentication--------------------------"+java.time.LocalDateTime.now());
 
         try {
   
@@ -72,7 +73,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
 
-        System.out.println("-----------------------------AuthenticationFilter/successfulAuthentication--------------------------");
+        System.out.println("-----------------------------AuthenticationFilter/successfulAuthentication--------------------------"+java.time.LocalDateTime.now());
+        System.out.println("---------------token------------"+environment.getProperty("token.expiration_time"));
 
     	String userName = ((User) auth.getPrincipal()).getUsername();
     	UserDto userDetails = usersService.getUserDetailsByEmail(userName);

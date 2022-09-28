@@ -77,8 +77,8 @@ public class UsersServiceImpl  implements UsersService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		System.out.println("-----------------------------UsersServiceImpl/loadUserByUsername--------------------------");
-		System.out.println("-----------------------------We are overriding inbuilt method--------------------------");
+		System.out.println("-----------------------------UsersServiceImpl/loadUserByUsername--------------------------"+java.time.LocalDateTime.now());
+		System.out.println("-----------------------------We are overriding inbuilt method--------------------------"+java.time.LocalDateTime.now());
 
 		//UserEntity userEntity = usersRepository.findByEmail(username);
 		UserEntity userEntity = usersRepository.findByEmail(username);
@@ -91,7 +91,7 @@ public class UsersServiceImpl  implements UsersService {
 	@Override
 	public UserDto getUserDetailsByEmail(String email) {
 
-		System.out.println("-----------------------------UsersServiceImpl/getUserDetailsByEmail--------------------------");
+		System.out.println("-----------------------------UsersServiceImpl/getUserDetailsByEmail--------------------------"+java.time.LocalDateTime.now());
 
 		UserEntity userEntity = usersRepository.findByEmail(email);
 

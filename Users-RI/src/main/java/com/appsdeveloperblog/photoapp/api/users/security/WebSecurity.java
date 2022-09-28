@@ -35,19 +35,19 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        System.out.println("-----------------------------WebSecurity/configure/HttpSecurity--------------------------");
+        System.out.println("-----------------------------WebSecurity/configure/HttpSecurity--------------------------" + java.time.LocalDateTime.now());
         http.csrf().disable();
         //http.authorizeRequests().antMatchers("/users/**").permitAll();
-        http.authorizeRequests().antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"));
-        //http.authorizeRequests().antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"))
-               // .and()
-                //.addFilter(getAuthenticationFilter());
+        //http.authorizeRequests().antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"));
+        http.authorizeRequests().antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"))
+               .and()
+                .addFilter(getAuthenticationFilter());
         http.headers().frameOptions().disable();
     }
 
     private AuthenticationFilter getAuthenticationFilter() throws Exception {
-        System.out.println("-----------------------------WebSecurity/getAuthenticationFilter--------------------------");
-        System.out.println("-----------------------------WebSecurity/ set authenticationManager in AuthenticationFilter--------------------------");
+        System.out.println("-----------------------------WebSecurity/getAuthenticationFilter--------------------------"+java.time.LocalDateTime.now());
+        System.out.println("-----------------------------WebSecurity/ set authenticationManager in AuthenticationFilter--------------------------"+java.time.LocalDateTime.now());
         //AuthenticationFilter authenticationFilter = new AuthenticationFilter(usersService, environment, authenticationManager());
         AuthenticationFilter authenticationFilter = new AuthenticationFilter(usersService, environment, authenticationManager());
         //authenticationFilter.setAuthenticationManager(authenticationManager());
@@ -64,8 +64,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        System.out.println("-----------------------------WebSecurity/configure/AuthenticationManagerBuilder--------------------------");
-        System.out.println("-----------------------------This method is responsible for login--------------------------");
+        System.out.println("-----------------------------WebSecurity/configure/AuthenticationManagerBuilder--------------------------"+java.time.LocalDateTime.now());
+        System.out.println("-----------------------------This method is responsible for login--------------------------"+java.time.LocalDateTime.now());
         //auth.userDetailsService(usersService).passwordEncoder(bCryptPasswordEncoder);
         System.out.println(usersService);
         System.out.println(bCryptPasswordEncoder);

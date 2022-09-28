@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.appsdeveloperblog.photoapp.api</groupId>
-	<artifactId>PhotoAppAPIConfigServer</artifactId>
+	<artifactId>ConfigServer-RI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>PhotoAppAPIConfigServer</name>
-	<description>Config Server</description>
+	<name>ConfigServer-RI</name>
+	<description>ConfigServer-RI</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -33,15 +33,15 @@
 		</dependency>
 		
 		        
-        <dependency>
+<!--        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
+        </dependency>-->
         
 		
 	</dependencies>
