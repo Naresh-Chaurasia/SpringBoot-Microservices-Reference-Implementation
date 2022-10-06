@@ -74,7 +74,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                                             Authentication auth) throws IOException, ServletException {
 
         System.out.println("-----------------------------AuthenticationFilter/successfulAuthentication--------------------------"+java.time.LocalDateTime.now());
-        System.out.println("---------------token------------"+environment.getProperty("token.expiration_time"));
+        System.out.println("---------------token.expiration_time------------"+environment.getProperty("token.expiration_time"));
+        System.out.println("---------------token.secret------------"+environment.getProperty("token.secret"));
 
     	String userName = ((User) auth.getPrincipal()).getUsername();
     	UserDto userDetails = usersService.getUserDetailsByEmail(userName);

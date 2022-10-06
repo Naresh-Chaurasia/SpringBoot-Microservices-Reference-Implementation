@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.appsdeveloperblog.photoapp.api.users.ui.model.AlbumResponseModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.slf4j.Logger;
@@ -34,9 +35,9 @@ import com.appsdeveloperblog.photoapp.api.users.data.*;
 public class UsersServiceImpl  implements UsersService {
 
 	UsersRepository usersRepository;
-	//RestTemplate restTemplate;
-	//@Autowired
-	//Environment environment;
+	RestTemplate restTemplate;
+	@Autowired
+	Environment environment;
 
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -44,12 +45,14 @@ public class UsersServiceImpl  implements UsersService {
 
 
 	@Autowired
-	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder)
+	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder, RestTemplate restTemplate)
 	{
 		this.usersRepository = usersRepository;
 		//this.environment = environment;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+		this.restTemplate = restTemplate;
 	}
+
 
 	@Override
 	public UserDto createUser(UserDto userDetails) {
@@ -100,6 +103,29 @@ public class UsersServiceImpl  implements UsersService {
 
 
 		return new ModelMapper().map(userEntity, UserDto.class);
+	}
+
+	@Override
+	public UserDto getUserByUserId(String userId) {
+
+		UserEntity userEntity = usersRepository.findByUserId(userId);
+		if(userEntity == null) throw new UsernameNotFoundException("User not found");
+
+		UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
+
+
+        String albumsUrl = String.format(environment.getProperty("albums.url"), userId);
+
+        ResponseEntity<List<AlbumResponseModel>> albumsListResponse = restTemplate.exchange(albumsUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<AlbumResponseModel>>() {
+        });
+        List<AlbumResponseModel> albumsList = albumsListResponse.getBody();
+		userDto.setAlbums(albumsList);
+		return userDto;
+
+		/*logger.info("Before calling albums Microservice");
+		List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId);
+		logger.info("After calling albums Microservice");*/
+
 	}
 
 }
