@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.appsdeveloperblog.photoapp.api.users.ui.model.AlbumResponseModel;
+import feign.FeignException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.slf4j.Logger;
@@ -39,18 +40,30 @@ public class UsersServiceImpl  implements UsersService {
 	@Autowired
 	Environment environment;
 
+	AlbumsServiceClient albumsServiceClient;
+
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
+//	@Autowired
+//	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder, RestTemplate restTelmplate)
+//	{
+//		this.usersRepository = usersRepository;
+//		//this.environment = environment;
+//		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+//		this.restTemplate = restTemplate;
+//	}
+
 	@Autowired
-	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder, RestTemplate restTemplate)
+	public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder, RestTemplate restTemplate, AlbumsServiceClient albumsServiceClient)
 	{
 		this.usersRepository = usersRepository;
 		//this.environment = environment;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 		this.restTemplate = restTemplate;
+		this.albumsServiceClient = albumsServiceClient;
 	}
 
 
@@ -114,17 +127,28 @@ public class UsersServiceImpl  implements UsersService {
 		UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 
 
-        String albumsUrl = String.format(environment.getProperty("albums.url"), userId);
+      /*  String albumsUrl = String.format(environment.getProperty("albums.url"), userId);
 
         ResponseEntity<List<AlbumResponseModel>> albumsListResponse = restTemplate.exchange(albumsUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<AlbumResponseModel>>() {
         });
-        List<AlbumResponseModel> albumsList = albumsListResponse.getBody();
+        List<AlbumResponseModel> albumsList = albumsListResponse.getBody();*/
+
+		List<AlbumResponseModel> albumsList = null;
+
+		logger.info("Before calling albums Microservice");
+		//try{
+			albumsList = albumsServiceClient.getAlbums(userId);
+//		}catch (FeignException fe){
+//			logger.info(fe.toString());
+//		}
+
+		logger.info("After calling albums Microservice");
+
 		userDto.setAlbums(albumsList);
+
 		return userDto;
 
-		/*logger.info("Before calling albums Microservice");
-		List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId);
-		logger.info("After calling albums Microservice");*/
+
 
 	}
 
