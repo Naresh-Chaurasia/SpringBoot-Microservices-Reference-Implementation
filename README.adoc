@@ -21,6 +21,7 @@ WARNING: WARNING
 === Gateway
 
 * Delete all filters.
+** Only Keep `ApiGatewayApplication`
 * properties
 
 ----
