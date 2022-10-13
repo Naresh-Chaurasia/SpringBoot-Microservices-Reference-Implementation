@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.appsdeveloperblog.app.ws</groupId>
-	<artifactId>REST-CRUD-ReferenceImplementation</artifactId>
+	<artifactId>REST-CRUD-RI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>REST-CRUD-ReferenceImplementation</name>
-	<description>Spring MVC Quick Start</description>
+	<name>REST-CRUD-RI</name>
+	<description>REST-CRUD-RI</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
