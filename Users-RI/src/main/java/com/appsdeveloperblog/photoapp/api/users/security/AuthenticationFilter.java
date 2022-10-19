@@ -44,7 +44,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	}
 	
     @Override
-    // This comes from super class. This is where authentication happens
+    // This comes from super class. This is where authentication happens. This is called when authentication is attempted.
     public Authentication attemptAuthentication(HttpServletRequest req,
                                                 HttpServletResponse res) throws AuthenticationException {
 
