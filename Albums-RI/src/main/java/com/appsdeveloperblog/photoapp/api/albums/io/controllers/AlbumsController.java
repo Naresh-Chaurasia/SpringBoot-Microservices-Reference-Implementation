@@ -35,6 +35,8 @@ public class AlbumsController {
             })
     public List<AlbumResponseModel> userAlbums(@PathVariable String id) {
 
+        System.out.println("================I was here=============");
+
         List<AlbumResponseModel> returnValue = new ArrayList<>();
         
         List<AlbumEntity> albumsEntities = albumsService.getAlbums(id);
