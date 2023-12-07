@@ -10,7 +10,7 @@ import org.springframework.web.server.ServerWebExchange;
 
 import reactor.core.publisher.Mono;
 
-@Component
+//@Component
 public class MyPostFilter implements GlobalFilter, Ordered {
 	
 	final Logger logger = LoggerFactory.getLogger(MyPostFilter.class);

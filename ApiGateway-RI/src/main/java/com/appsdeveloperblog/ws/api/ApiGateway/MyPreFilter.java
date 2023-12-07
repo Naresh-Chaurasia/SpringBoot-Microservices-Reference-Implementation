@@ -13,7 +13,7 @@ import org.springframework.web.server.ServerWebExchange;
 
 import reactor.core.publisher.Mono;
 
-@Component
+//@Component
 public class MyPreFilter implements GlobalFilter, Ordered {
 	
 	final Logger logger = LoggerFactory.getLogger(MyPreFilter.class);

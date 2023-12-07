@@ -9,7 +9,7 @@ import org.springframework.core.annotation.Order;
 
 import reactor.core.publisher.Mono;
 
-@Configuration
+//@Configuration
 public class GlobalFiltersConfiguration {
 	
 	final Logger logger = LoggerFactory.getLogger(GlobalFiltersConfiguration.class);
